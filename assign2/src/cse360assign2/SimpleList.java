@@ -146,4 +146,44 @@ public class SimpleList
 		}
 		return index;
 	}
+	
+	public void append(int value)
+	{
+		if (list.length == count)
+		{
+			int half_size = count/2;
+			increase_size(count + half_size);
+		}
+		list[count] = value;
+		count++;
+	}
+	
+	public int first()
+	{
+		if (count == 0)
+		{
+			return -1;
+		}
+		else
+		{
+			return list[0];
+		}
+	}
+	
+	public int last()
+	{
+		if (count == 0)
+		{
+			return -1;
+		}
+		else
+		{
+			return list[count];
+		}
+	}
+	
+	public int size()
+	{
+		return list.length;
+	}
 }
