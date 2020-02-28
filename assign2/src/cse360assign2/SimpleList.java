@@ -28,22 +28,23 @@ public class SimpleList
 	public void add (int num)
 	{
 		int i;
-		if (count == list.length)
+		if (count == list.length) //if array is full
 		{
-			//int half = count/2;
-			//bigger_size(count+half);
+			int half = count/2;
+			increase_size(count+half); // increase size by half
 		}
 		for (i = count; i > 0; i--)
 		{
-			list[i]= list[i-1];
+			list[i]= list[i-1]; // shift remaining elements
 		}
-		list[0] = num;
-		count ++;
-		System.out.println("Number added successfully");
+		list[0] = num; // add element at index 0
+		count ++; // increment count
+		System.out.println("Number added successfully"); // print message
 	}
 	
 /**
- * 	This method removes an integer from the list.
+ * 	This method removes an integer from the list. The other values are shifted down.
+ *  If the list has more than 25% empty places, the size of the list is decreased.
  * @param num
  */
 	
@@ -55,32 +56,32 @@ public class SimpleList
 		{
 			for (i = index; i < count; i++)
 			{
-				list[i] = list[i+1];
+				list[i] = list[i+1]; //shift array down 
 			}
-			count--;
-			System.out.println("Element removed successfully");
+			count--; //decrement count
+			System.out.println("Element removed successfully"); //print message
 		}
 		else
 		{
-			System.out.println(num + "not found");
+			System.out.println("element not found"); //print error message
 		}
 		
-		int capacity = (3*list.length)/4;
-		if (count < capacity)
+		int capacity = (3*list.length)/4; // calculate 75% capacity
+		if (count < capacity) // if count is less than 75% capacity
 		{
-			//adapt_Size(count);
+			decrease_size(count); // decrease size of list
 		}
 	}
 	
 	public void increase_size(int newSize) 
 	{
 		int i;
-		int bigger_array[] = new int [newSize];
-		for (i = 0; i < newSize; i++)
+		int bigger_array[] = new int [newSize]; //create new array 
+		for (i = 0; i < newSize && i < count; i++)
 		{
-			bigger_array[i] = list[i];
+			bigger_array[i] = list[i]; //copy elements into new bigger array
 		}
-		list = bigger_array;
+		list = bigger_array; //replace list with new bigger array
 		if (newSize < count)
 		{
 			count = newSize;
@@ -90,12 +91,12 @@ public class SimpleList
 	public void decrease_size(int newSize)
 	{
 		int i;
-		int smaller_array[] = new int [newSize];
-		for (i = 0; i < newSize; i++)
+		int smaller_array[] = new int [newSize]; //create new array
+		for (i = 0; i < newSize && i < count; i++)
 		{
-			smaller_array[i] = list[i];
+			smaller_array[i] = list[i]; //copy elements into new smaller array
 		}
-		list = smaller_array;
+		list = smaller_array; //replace list with new smaller array
 		if (newSize < count)
 		{
 			count = newSize;
@@ -149,41 +150,41 @@ public class SimpleList
 	
 	public void append(int value)
 	{
-		if (list.length == count)
+		if (list.length == count) //if array is full
 		{
 			int half_size = count/2;
-			increase_size(count + half_size);
+			increase_size(count + half_size); //increase size by half
 		}
-		list[count] = value;
-		count++;
+		list[count] = value; //append value to end of list
+		count++; //increment count
 	}
 	
 	public int first()
 	{
-		if (count == 0)
+		if (count == 0) //if array is empty
 		{
 			return -1;
 		}
 		else
 		{
-			return list[0];
+			return list[0]; //return value at index 0
 		}
 	}
 	
 	public int last()
 	{
-		if (count == 0)
+		if (count == 0) //if array is empty
 		{
 			return -1;
 		}
 		else
 		{
-			return list[count];
+			return list[count]; //return value in the max index
 		}
 	}
 	
 	public int size()
 	{
-		return list.length;
+		return list.length; //return length of list
 	}
 }
